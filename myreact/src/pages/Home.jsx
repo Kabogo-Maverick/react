@@ -10,8 +10,15 @@ function Home() {
     { id: 6, title: "Iron Veil", release_date: "2023" }
   ];
 
+  const handlesearch = () => {
+  }
+
   return (
     <div className="home">
+      <form onSubmit={handlesearch} className="search-form">
+       <input type="text" className="search-input" placeholder="Search for movies..." /> 
+      </form>
+
       <div className="movies-grid">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
