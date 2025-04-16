@@ -1,4 +1,5 @@
 import MovieCard from "../components/MovieCard";
+import { useState } from "react";
 
 function Home() {
   const [searchQuery, setsearchQuery] = useState("");
@@ -29,10 +30,15 @@ function Home() {
       </form>
 
       <div className="movies-grid">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+  {movies
+    .filter((movie) =>
+      movie.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+    )
+    .map((movie) => (
+      <MovieCard key={movie.id} movie={movie} />
+    ))}
+</div>
+
     </div>
   );
 }
