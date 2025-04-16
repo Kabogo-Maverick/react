@@ -30,13 +30,13 @@ function Home() {
       </form>
 
       <div className="movies-grid">
-  {movies
-    .filter((movie) =>
-      movie.title.toLowerCase().startsWith(searchQuery.toLowerCase())
-    )
-    .map((movie) => (
-      <MovieCard key={movie.id} movie={movie} />
-    ))}
+          {movies
+           .filter((movie) =>
+           movie.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+           )
+           .map((movie) => (
+           <MovieCard key={movie.id} movie={movie} />
+          ))}
 </div>
 
     </div>
