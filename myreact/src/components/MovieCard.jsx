@@ -1,3 +1,5 @@
+import "../css/MovieCard.css";
+
 function MovieCard({ movie }) {
     function onClickFave() {
       alert(`Faved: ${movie.title}`);
