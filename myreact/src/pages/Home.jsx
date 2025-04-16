@@ -1,21 +1,36 @@
 import MovieCard from "../components/MovieCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { searchMovies, getPopularMovies } from "../services/api";
 import "../css/Home.css";
 
 function Home() {
   const [searchQuery, setsearchQuery] = useState("");
+  const [movies, setMovies] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
+ useEffect(()=>{
+  const loadPopularMovies = async () =>{
+    try{
+      const popularMovies = await getPopularMovies()
+      setMovies(popularMovies)
+    }
+    catch(err){
+      console.log(err)
+      setError("failed to load....")
+    }
+      finally{
+        setLoading(false)
+      }
+    }
+    
+    loadPopularMovies()
+  
+ })
 
-  const movies = [
-    { id: 1, title: "Shadow Circuit", release_date: "2022" },
-    { id: 2, title: "Crimson Tide", release_date: "2020" },
-    { id: 3, title: "Neon Mirage", release_date: "2023" },
-    { id: 4, title: "Echo Runner", release_date: "2021" },
-    { id: 5, title: "Silent Pulse", release_date: "2024" },
-    { id: 6, title: "Iron Veil", release_date: "2023" }
-  ];
-
-  const handlesearch = () => {
+  
+  const handlesearch = (e) => {
+    e.preventDefault()
     alert(searchQuery)
   }
 
